@@ -1,5 +1,21 @@
 # Guacamole Docker
-This repository is taken from https://github.com/boschkundendienst/guacamole-docker-compose but has been updated to include some new features.
+This repository is taken from https://github.com/boschkundendienst/guacamole-docker-compose but has been updated to include some new features.This includes
+support for SAML and upstream SSL encryption. This has been tested and working with Keycloak 17.
+
+## Installation
+
+This includes all relevant packages needed. The only thing to do is to download and copy the guacamole-auth-saml-1.3.0.jar file into the config/extensions folder.
+
+You have to use 1.3.0 (not 1.4.0) due to a bug in the 1.4.0 release.
+
+Download the folder and run the following commands
+```shell
+chmod +x prepare.sh
+./prepare.sh
+docker-compose up
+```
+
+This will create the database init script and generate NGINX SSL keys for communication. The upstream server doesn't validate these but uses the SSL for local encryption across the network.
 
 ## NGINX Configuration
 
